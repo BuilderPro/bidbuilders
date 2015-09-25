@@ -4,8 +4,10 @@ var User = require('../models/User.js')
 
 function deserialize(response) {
 	var user = response[0];
-	if(user == null) return Promise.resolve(null)
-	else return Promise.resolve(User(users))
+	if(user == null) 
+		return Promise.resolve(null)
+	else 
+		return Promise.resolve(User(user))
 }
 
 function deserializeAll(users) {
@@ -33,11 +35,11 @@ module.exports = {
 		});
 	},
 	createUser: function(user) {
-		findUserByEmail(user.email).then(function(existingUser) {
+		return findUserByEmail(user.email).then(function(existingUser) {
 			if(existingUser != null)
 				return Promise.reject('User email already exists');
 
-			console.log(db('users').insert(user.toDbModel()))
+			return db.returning('*').insert(user.toDbModel()).into('users').then(deserialize)
 		});
 	}
 }
