@@ -1,12 +1,24 @@
-'use strict';
+(function(){
+  'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+var app = angular.module('bidBuilders', [ 'ui.router', 'ui.bootstrap']);
+
+app
+  .config(function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.when('', '/');
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('landing', {
+          url: '/',
+          templateUrl : 'app/landing/landingView.html',
+          controller  : 'LandingCtrl'
+      })
+      .state('login', {
+        url:'/login',
+        templateUrl : 'app/login/loginView.html',
+        controller : 'LoginCtrl'
+      });
+
+  });
+
+})();
