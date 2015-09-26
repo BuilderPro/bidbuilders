@@ -4,16 +4,27 @@
 
 var app = angular.module('bidBuilders');
 
-angular.module('myApp.view1', ['ngRoute'])
+app.service('LoginService', ['$http', function($http){
 
-// .config(['$routeProvider', function($routeProvider) {
-//   $routeProvider.when('/view1', {
-//     templateUrl: 'view1/view1.html',
-//     controller: 'View1Ctrl'
-//   });
-// }])
+	this.login = function(user){
+		$http.post('/login', 
+		{
+			"email": user.email, 
+			"password": user.password
+		})
+		.then(function(user){
+			toaster.pop('success', "Logged In!", "You have been logged in.")
+			$scope.user = user; 
+		}, function(err){
+			if(err){
+				toaster.pop('warning', "Error", "Incorrect email or password"); 
+			}
+		});
+	};
 
-.controller('View1Ctrl', [function() {
 
-}]);
+}])
+
+
+
 })();

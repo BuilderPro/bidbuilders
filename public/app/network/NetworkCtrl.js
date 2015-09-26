@@ -4,10 +4,10 @@
 var app = angular.module('bidBuilders');
 
 app
-  .controller('NetworkCtrl', [function($scope, $http) {
+  .controller('NetworkCtrl', ['$scope', '$http', function($scope, $http) {
 
 
-    
+    console.log("NetworkCtrl"); 
 
 
 }]);

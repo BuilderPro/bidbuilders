@@ -55,7 +55,7 @@ function serializeAll(models) {
 
 // AUTH ENDPOINTS
 app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
+  passport.authenticate('local', { successRedirect: '/dashboard',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
