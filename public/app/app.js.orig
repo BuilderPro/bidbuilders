@@ -21,6 +21,7 @@ app
       .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'app/dashboard/dashboardView.html', 
+<<<<<<< HEAD
         controller: 'DashboardCtrl',
         resolve: {
           console: function(){
@@ -38,6 +39,11 @@ app
         templateUrl: 'app/bids/BidView.html', 
         controller: 'BidCtrl'
       })
+=======
+        controller: 'DashboardCtrl'
+      });
+
+>>>>>>> ab875f2287c67a9b8cd2027a66f2554212a3763d
   });
 
 })();

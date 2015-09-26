@@ -1,7 +1,30 @@
 # builderpro
 General contractor and client communication and bidding tool.
 
+##pgProvider 
+You will need to create a custom pgProvider.js file in the `/providers` folder. 
+It should look something like 
+
+`module.exports = require('knex')({
+   client: 'pg',
+   connection: "postgres://"+ process.env.PSQL_ROLE +":"+ process.env.PSQL_PASS +"@localhost/bbdb"
+});`
+
+This will allow you to connect to the PG database for your local development or production environment. 
+
 # api
+
+
+### POST: /login 
+input: 
+```
+JSON 
+{ 
+  "email": user.email, 
+  "password": user.password
+}
+```
+
 
 ### POST: /signup
 input: (valid userTypes: ['general_contractor', 'sub_contractor', 'engineer', 'architect', 'owner'])
