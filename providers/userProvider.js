@@ -39,6 +39,9 @@ module.exports = {
 		});
 	},
 	saveUser: (user) => {
+		if(!user.isUpdatable())
+			return findUserById(user.userId)
+
 		return db('users')
 			.where('user_id', user.userId)
 			.update(user.toUpdateSafeDBModel(), '*').

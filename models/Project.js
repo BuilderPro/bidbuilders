@@ -33,14 +33,21 @@ class Project {
 		}
 	}
 
+	isUpdatable() {
+		return Object.keys(this.toUpdateSafeDBModel()).length > 0;
+	}
+
 	// ensures we never overwrite parent_id
 	toUpdateSafeDBModel() {
-		return  {
-			owner: this.owner,
-			accepted_bid: this.acceptedBid,
-			name: this.name,
-			description: this.description
-		}
+		var updateModel = {}
+		// non-nullable fields
+
+		// nullable fields
+		if(this.acceptedBid !== undefined) updateModel.accepted_bid = this.acceptedBid
+		if(this.name !== undefined) updateModel.name = this.name
+		if(this.description !== undefined) updateModel.description = this.description
+
+		return updateModel;
 	}
 
 }

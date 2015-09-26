@@ -42,14 +42,22 @@ class User {
 		}
 	}
 
+	isUpdatable() {
+		return Object.keys(this.toUpdateSafeDBModel()).length > 0;
+	}
+
 	// ensures we never overwrite hash
 	toUpdateSafeDBModel() {
-		return  {
-			email: this.email,
-			firstname: this.firstname,
-			lastname: this.lastname,
-			user_type: this.userType
-		}
+		var updateModel = {}
+		// non-nullable fields
+		if(this.email != undefined) updateModel.email = this.email
+		if(this.userType != undefined) updateModel.user_type = this.userType
+
+		// nullable fields
+		if(this.firstname !== undefined) updateModel.firstname = this.firstname
+		if(this.lastname !== undefined) updateModel.lastname = this.lastname
+
+		return updateModel;
 	}
 
 }

@@ -27,11 +27,19 @@ class Project {
 		}
 	}
 
+	isUpdatable() {
+		return Object.keys(this.toUpdateSafeDBModel()).length > 0;
+	}
+
 	// ensures we never overwrite project_id, owner
 	toUpdateSafeDBModel() {
-		return  {
-			amount: this.amount
-		}
+		var updateModel = {}
+		// non-nullable fields
+		
+		// nullable fields
+		if(this.amount !== undefined) updateModel.amount = this.amount
+
+		return updateModel;
 	}
 
 }
