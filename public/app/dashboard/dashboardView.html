@@ -1,4 +1,16 @@
 <h1 class="text-center">Project Dashboard</h1>
-<a class="btn btn-default" href="#" ng-click="createProject()">Add Project</a>
+
+<h5 class="text-center">Logged in as {{user.email}}</h5>
+
+<div class="col-md-4" ng-repeat="project in projects">
+	<div class="panel panel-default">
+		<div class="panel-heading">{{project.name}}</div>
+		<div class="panel-body">
+		{{project.description}}
+		</div>
+	</div>
+</div>
+
+
 
 
