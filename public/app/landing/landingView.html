@@ -1,7 +1,3 @@
-<div class="row header jumbotron">
-  <h1>i'm a header <a ui-sref='login' class='btn btn-default'>to login view</a></h1>
-</div>
-
 <div class="row">
   <h1 class='text-center login'>Login</h1>
     <form class='row col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4'>
@@ -13,7 +9,17 @@
         <label for="exampleInputPassword1">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="user.password">
       </div>
-        <div class="text-danger"><strong>{{error}}</strong></div>
-      <button type="submit" class="btn btn-default col-xs-12" ng-click="login(user)">Submit</button>
+      <div class="form-group">
+        <select ng-model="user.userType" class="form-control">
+          <option value="none">-- What are you? --</option>
+          <option value="owner">Owner</option>
+          <option value="general_contractor">General Contractor</option>
+          <option value="sub">Sub Contractor</option>
+          <option value="engineer">Engineer</option>
+          <option value="architect">Architect</option>
+        </select>
+      </div>
+        <!-- <div class="text-danger"><strong>{{error}}</strong></div> -->
+      <button type="submit" class="btn btn-default col-xs-12" ng-submit="signup(user)">Submit</button>
     </form>
 </div>
