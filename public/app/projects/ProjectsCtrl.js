@@ -26,5 +26,14 @@ app
         });
     };
 
+    $scope.inviteBid(email, projectId){
+        $http.post('/invite', {
+            "projectId": projectId,
+            "email": email
+        }).then(function(invite){
+            console.log("bidder invited", invite)
+        })
+    }
+
 }]);
 })();

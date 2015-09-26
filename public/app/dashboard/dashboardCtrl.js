@@ -14,7 +14,7 @@ app
 
     $http.get('/projects').then(function(projects){
     	$scope.projects = projects.data; 
-    }); 
+    });
 
 
 }]);
