@@ -70,7 +70,7 @@ gulp.task('minify', ['template-cache'], function(){
     .pipe(concat('bb.js'))
     .pipe(gulp.dest('public/dist/'))
     .pipe(rename('bb.min.js'))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(gulp.dest('public/dist/'))
     .pipe(notify({ message: 'app re-compiled' }));
 });

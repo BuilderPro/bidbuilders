@@ -4,7 +4,7 @@
 var app = angular.module('bidBuilders');
 
 app
-  .controller('DashboardCtrl', ['$scope', '$http', '$state', function($scope, $http, $state, ProjectService) {
+  .controller('DashboardCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
 
   	$http.get('/user').then(function(user){
   		$scope.user = user.data; 
