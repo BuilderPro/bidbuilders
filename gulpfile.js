@@ -44,6 +44,7 @@ gulp.task('plugins', function() {
       'public/bower_components/AngularJS-Toaster/toaster.js',
       'public/bower_components/angular-bootstrap/ui-bootstrap.min.js',
       'public/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'public/bower_components/bootstrap/dist/js/bootstrap.min.js',
 	])
 	.pipe(concat('plugins.min.js'))
 	.pipe(gulp.dest('public/dist/'));
