@@ -14,7 +14,7 @@ class Project {
 		this.description = data.description
 	}
 
-	toJson() {
+	toUIModel() {
 		return {
 			projectId: this.projectId,
 			parentId: this.parentId,
@@ -25,7 +25,7 @@ class Project {
 		}
 	}
 
-	toDbModel() {
+	toDBModel() {
 		return  {
 			project_id: this.userId,
 			parent_id: this.email,

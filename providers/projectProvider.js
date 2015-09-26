@@ -9,11 +9,12 @@ function deserialize(response) {
 
 function deserializeAll(projects) {
 	if(projects == null) return Promise.resolve(null)
-	if(Array.isArray(projects)) return Promise.resolve(users.map(Project))
+	if(Array.isArray(projects)) return Promise.resolve(projects.map(Project))
+	else return Promise.resolve(Project(projects))
 }
 
 function findProjectsByUserId(userId) {
-	return db('projects').where('owner', userId).then(deserialize);
+	return db('projects').where('owner', userId).then(deserializeAll);
 }
 
 function findProjectById(projectId) {

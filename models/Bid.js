@@ -12,7 +12,7 @@ class Project {
 		this.amount = data.amount
 	}
 
-	toJson() {
+	toUIModel() {
 		return {
 			bidId: this.bidId,
 			projectId: this.projectId,
@@ -21,7 +21,7 @@ class Project {
 		}
 	}
 
-	toDbModel() {
+	toDBModel() {
 		return  {
 			bid_id: this.bidId,
 			project_id: this.projectId,

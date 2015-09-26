@@ -10,6 +10,7 @@ function deserialize(response) {
 function deserializeAll(users) {
 	if(users == null) return Promise.resolve(null)
 	if(Array.isArray(users)) return Promise.resolve(users.map(User))
+	else return Promise.resolve(User(users));
 }
 
 function findUserByEmail(email) {
@@ -25,6 +26,8 @@ function findUserById(userId) {
 }
 
 module.exports = {
+	findUserById: findUserById,
+	findUserByEmail: findUserByEmail,
 	authenticate: function(email, password) {
 		return findUserByEmail.then(function(user) {
 			if(user == null) 
@@ -35,8 +38,6 @@ module.exports = {
 				return Promise.reject('Invalid Password')
 		});
 	},
-	findUserById: findUserById,
-	findUserByEmail: findUserByEmail,
 	createUser: function(user) {
 		return findUserByEmail(user.email)
 			.then(function(existingUser) {
@@ -44,7 +45,7 @@ module.exports = {
 					return Promise.reject('User email already exists');
 
 				return db.returning('*')
-					.insert(user.toDbModel())
+					.insert(user.toDBModel())
 					.into('users')
 					.then(deserialize)
 		});

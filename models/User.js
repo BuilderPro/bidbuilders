@@ -21,7 +21,7 @@ class User {
 		return bcrypt.compareSync(password, this[hash])
 	}
 
-	toJson() {
+	toUIModel() {
 		return {
 			email: this.email,
 			firstname: this.firstname,
@@ -30,7 +30,7 @@ class User {
 		}
 	}
 
-	toDbModel() {
+	toDBModel() {
 		return  {
 			user_id: this.userId,
 			email: this.email,

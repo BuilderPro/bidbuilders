@@ -49,15 +49,15 @@ app.post('/login',
 app.post('/signup', function(req, res, next) {
 	userProvider.createUser(User(req.body))
 	.then(function(createdUser) {
-		res.json(createdUser.toJson())
+		res.json(createdUser.toUIModel())
 	})
-})
-
-
+});
 
 app.get('/project/:projectId', function(req, res, next) {
-	userProvider.
-})
+	projectProvider.findProjectById(res.path.projectId).then(function(project) {
+		res.json(project.toUIModel())
+	})
+});
 
 //Set Server
 var port = process.env.EXPRESS_PORT || 8080; 
