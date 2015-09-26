@@ -11,6 +11,7 @@ app.service('ProjectsService', ['$http', function($http){
 	this.listProjects = function(){
 		$http.get('/projects').then(function(projects){
 			console.log("Projects List", projects); 
+			return projects; 
 		}, function(err){
 			if(err) console.log("Error getting projects. ", err); 
 		})

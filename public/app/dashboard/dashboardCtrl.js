@@ -11,7 +11,7 @@ app
 	}, function(err){
 		if(err) console.log("get User err: ", err); 
 	});
-
+	
     console.log("DashboardCtrl");
 
 
