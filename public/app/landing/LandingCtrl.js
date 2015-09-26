@@ -4,7 +4,8 @@
 var app = angular.module('bidBuilders');
 
 app
-  .controller('LandingCtrl', ['$scope', '$state', '$http', function($scope, $state, $http) {	
+  .controller('LandingCtrl', ['$scope', '$state', '$http', 'toaster', 
+  		function($scope, $state, $http, toaster) {	
 
   	$scope.signup = function(user){
   		$http.post('/signup', 
@@ -15,7 +16,8 @@ app
 			}).then(function(success){
 				$state.go('dashboard'); 
 			}, function(err){
-				if(err) console.log("Signup Error, LandingCtrl: ", err); 
+				toaster.pop('danger', "Error!", "That email already exists!");
+				if(err) console.log("That email already exists", err); 
 		}); 
   	}; 
 

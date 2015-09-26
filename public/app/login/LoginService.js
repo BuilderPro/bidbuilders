@@ -1,19 +1,23 @@
-(function(){
+	(function(){
 
 'use strict';
 
 var app = angular.module('bidBuilders');
 
-angular.module('myApp.view1', ['ngRoute'])
+app.service('LoginService', ['$http', '$state', function($http, $state){
 
-// .config(['$routeProvider', function($routeProvider) {
-//   $routeProvider.when('/view1', {
-//     templateUrl: 'view1/view1.html',
-//     controller: 'View1Ctrl'
-//   });
-// }])
-
-.controller('View1Ctrl', [function() {
+	this.login = function(user){
+		$http.post('/login', 
+		{
+			"username": user.email, 
+			"password": user.password
+		}).then(function(user){
+			$state.go('dashboard'); 
+		}); 
+	}; 
 
 }]);
+
+
+
 })();
