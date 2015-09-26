@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-var app = angular.module('bidBuilders', [ 'ui.router', 'ui.bootstrap']);
+var app = angular.module('bidBuilders', ['ui.router', 'ui.bootstrap']);
 
 app
   .config(function($stateProvider, $urlRouterProvider) {
