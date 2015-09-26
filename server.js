@@ -49,7 +49,6 @@ function serialize(model) {
 }
 
 function serializeAll(models) {
-	console.log(models)
 	return Promise.resolve(models.map((model) => model.toUIModel()))
 }
 
@@ -103,7 +102,7 @@ app.get('/project/:parentId/subs', (req, res, next) => {
 		then((projects) => { res.json(projects) })
 });
 
-app.get('/project/:projectId/all', (req, res, next) => {
+app.get('/project/:parentId/all', (req, res, next) => {
 	projectProvider.
 		findAllProjectsByParentId(req.params.parentId).
 		then(serializeAll).
