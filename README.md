@@ -14,6 +14,18 @@ This will allow you to connect to the PG database for your local development or 
 
 # api
 
+
+### POST: /login 
+input: 
+```
+JSON 
+{ 
+  "email": user.email, 
+  "password": user.password
+}
+```
+
+
 ### POST: /signup
 input: (valid userTypes: ['general_contractor', 'sub_contractor', 'engineer', 'architect', 'owner'])
 ```json
