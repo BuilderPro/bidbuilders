@@ -111,6 +111,9 @@ app.get('/user/:userId/bids', (req, res, next) => {
 
 // PROJECT ENDPOINTS
 app.post('/project', (req, res, next) => {
+	var projectData = req.body;
+	if(projectData.owner == null) projectData.owner = req.user.userId;
+
 	projectProvider.
 		createProject(Project(req.body)).
 		then(serialize).
@@ -194,6 +197,10 @@ app.get('/bid/:bidId', (req, res, next) => {
 		then(serialize).
 		then((bid) => { res.json(bid) })
 });
+
+app.post('/invite', (req, res, next) => {
+
+})
 
 
 // START LISTENING
