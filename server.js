@@ -14,6 +14,7 @@ var app = express();
 var userProvider = require('./providers/userProvider');
 var projectProvider = require('./providers/projectProvider');
 var bidProvider = require('./providers/bidProvider');
+var inviteProvider = require('./providers/inviteProvider');
 
 // MIDDLEWARE
 app.use(cors());
@@ -34,6 +35,7 @@ app.use(passport.session());
 var User = require('./models/User.js')
 var Project = require('./models/Project.js')
 var Bid = require('./models/Bid.js')
+var Invite = require('./models/Invite.js')
 
 // Authorization Middleware
 // var requireAuth = function(req, res, next) {
@@ -199,7 +201,12 @@ app.get('/bid/:bidId', (req, res, next) => {
 });
 
 app.post('/invite', (req, res, next) => {
+	var inviteData = req.body
+	inviteData.invitee = inviteData.invitee || req.user.userId
 
+	inviteProvider.
+		createInvite(Invite(req.body)).
+		then((invite) => { res.json(invite) });
 })
 
 
