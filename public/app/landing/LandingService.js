@@ -5,7 +5,7 @@
 var app = angular.module('bidBuilders');
 
 app
-  .service('LandingService', [function($http) {
+  .service('LandingService', ['$http', function($http) {
 
   	this.signup = function(user){
 	  	$http.post('/signup', 
