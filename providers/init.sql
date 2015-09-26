@@ -52,7 +52,7 @@ CREATE TYPE invite_status AS ENUM ('pending', 'rejected', 'expired', 'accepted')
 CREATE TABLE invites (
 	invite_token				varchar(36) PRIMARY KEY,
 	email						varchar(256) NOT NULL,
-	timestamp					timestamp NOT NULL,
+	invited_ts					timestamp NOT NULL,
 	invitee 					varchar(36) REFERENCES users NOT NULL,
 	status						invite_status DEFAULT 'pending',
 	project_id					varchar(36) REFERENCES projects DEFAULT NULL		
