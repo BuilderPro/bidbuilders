@@ -10,8 +10,8 @@ app
 	toaster.pop('success', "LOGIN", "text");
 
 	$scope.login = function(user){
-		LoginService.login(user)
-	}
+		LoginService.login(user);
+	};
 
 }]);
 })();

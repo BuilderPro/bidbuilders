@@ -13,17 +13,14 @@ app.service('LoginService', ['$http', function($http){
 			"password": user.password
 		})
 		.then(function(user){
-			toaster.pop('success', "Logged In!", "You have been logged in.")
-			$scope.user = user; 
+			$state.go('dashboard'); 
 		}, function(err){
-			if(err){
-				toaster.pop('warning', "Error", "Incorrect email or password"); 
-			}
+			if(err) console.log("LoginService Error: ", err); 
 		});
 	};
 
 
-}])
+}]);
 
 
 
