@@ -7,7 +7,7 @@ app
   .controller('DashboardCtrl', [function($scope, $http) {
 
 
-    console.log("DashboardCtrl")
+    console.log("DashboardCtrl");
 
 
 }]);

@@ -60,10 +60,6 @@ app.post('/login',
                                    failureFlash: true })
 );
 
-app.get('/user', (req, res, next) => {
-	res.json(req.user.toUIModel())
-})
-
 // USER ENDPOINTS
 app.post('/signup', (req, res, next) => {
 	userProvider.
@@ -71,6 +67,10 @@ app.post('/signup', (req, res, next) => {
 		then(serialize).
 		then((user) => { res.json(user) })
 });
+
+app.get('/user', (req, res, next) => {
+	res.json(req.user.toUIModel())
+})
 
 app.post('/user/:userId', (req, res, next) => {
 	var userData = req.body;
@@ -104,7 +104,6 @@ app.get('/user/:userId/bids', (req, res, next) => {
 })
 
 
-
 // PROJECT ENDPOINTS
 app.post('/project', (req, res, next) => {
 	projectProvider.
@@ -122,6 +121,13 @@ app.post('/project/:projectId', (req, res, next) => {
 		then(serialize).
 		then((project) => { res.json(project)})
 });
+
+app.get('/projects', (req, res, next) => {
+	projectProvider.
+		findProjectsByUserId(req.user.userId).
+		then(serializeAll).
+		then((projects) => { res.json(projects) })
+})
 
 app.get('/project/:projectId', (req, res, next) => {
 	projectProvider.
@@ -169,6 +175,13 @@ app.post('/bid/:bidId', (req, res, next) => {
 		then(serialize).
 		then((bid) => { res.json(bid)})
 });
+
+app.get('/bids', (req, res, next) => {
+	bidProvider.
+		findBidsByUserId(req.user.userId).
+		then(serializeAll).
+		then((bids) => { res.json(bids) })
+})
 
 app.get('/bid/:bidId', (req, res, next) => {
 	bidProvider.

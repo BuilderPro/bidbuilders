@@ -6,4 +6,10 @@ bower_components
 .env
 providers/pgProvider.js
 
+.template-cache
+dist
+
+public/node_modules
+public/bower_components
+
 

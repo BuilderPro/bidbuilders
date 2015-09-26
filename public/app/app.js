@@ -22,7 +22,7 @@ app
         url:'/dashboard',
         templateUrl: 'app/dashboard/dashboardView.html', 
         controller: 'DashboardCtrl'
-      })
+      });
 
   });
 
