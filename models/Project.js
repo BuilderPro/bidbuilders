@@ -24,8 +24,8 @@ class Project {
 
 	toDBModel() {
 		return  {
-			project_id: this.userId,
-			parent_id: this.email,
+			project_id: this.projectId,
+			parent_id: this.parentId,
 			owner: this.owner,
 			accepted_bid: this.acceptedBid,
 			name: this.name,
@@ -35,4 +35,4 @@ class Project {
 
 }
 
-module.exports = (bidData) => new Project(userData);
+module.exports = (projectData) => new Project(projectData);

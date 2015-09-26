@@ -13,19 +13,26 @@ function deserializeAll(bids) {
 	else 					return Promise.resolve(Bid(bids))
 }
 
-function findBidsByUserId(userId) {
-	return db('bids').
-		where('owner', userId).
-		then(deserializeAll);
-}
-
-function findBidsByProjectId(projectId) {
-	return db('bids').
-		where('project_id', projectId).
-		then(deserializeAll);
-}
-
 module.exports = {
-	findBidsByProjectId: findBidsByProjectId,
-	findBidsByUserId: findBidsByUserId
+	findBidById: (bidId) => {
+		return db('bids').
+			where('bid_id', bidId).
+			then(deserialize);
+	},
+	findBidsByProjectId: (projectId) => {
+		return db('bids').
+			where('project_id', projectId).
+			then(deserializeAll);
+	},
+	findBidsByUserId: (userId) => {
+		return db('bids').
+			where('owner', userId).
+			then(deserializeAll);
+	},
+	createBid: (bid) => {
+		return db.returning('*')
+			.insert(bid.toDBModel())
+			.into('bids')
+			.then(deserialize);	
+	}
 }

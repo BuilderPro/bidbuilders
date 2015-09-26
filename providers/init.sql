@@ -16,8 +16,8 @@ CREATE TABLE users (
 	user_id						varchar(36) PRIMARY KEY,
 	email						varchar(254) UNIQUE NOT NULL,
 	hash						varchar(60) NOT NULL,
-	firstname					varchar(35) NOT NULL,
-	lastname					varchar(35) NOT NULL,
+	firstname					varchar(35),
+	lastname					varchar(35),
 	user_type					user_type NOT NULL
 );
 

@@ -29,4 +29,4 @@ class Project {
 
 }
 
-module.exports = (projectData) => new Project(projectData);
+module.exports = (bidData) => new Project(bidData);

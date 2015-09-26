@@ -8,24 +8,53 @@ function deserialize(response) {
 }
 
 function deserializeAll(projects) {
+	console.log(projects)
 	if(projects == null) 		return Promise.resolve(null)
 	if(Array.isArray(projects)) return Promise.resolve(projects.map(Project))
 	else 						return Promise.resolve(Project(projects))
 }
 
-function findProjectsByUserId(userId) {
-	return db('projects').
-		where('owner', userId).
+function findProjectsByParentId(parentId) {
+	return db.raw('WITH RECURSIVE sup_projects AS ( '+
+		'SELECT p.*,0 AS depth ' +
+		'FROM projects p WHERE projectId = ? ' +
+		'UNION ' +
+		'SELECT t.*,s.depth+1 ' +
+		'FROM projects t JOIN sub_projects s ON t.parent_id = s.project_id ' +
+		') SELECT * FROM sub_projects WHERE project_id != ?',[parentId, parentId]).
 		then(deserializeAll);
 }
 
-function findProjectById(projectId) {
-	return db('projects').
-		where('project_id', projectId).
-		then(deserialize)
-}
-
 module.exports = {
-	findProjectById: findProjectById,
-	findProjectsByUserId: findProjectsByUserId
+	findProjectById: (projectId) => {
+		return db('projects').
+			where('project_id', projectId).
+			then(deserialize)
+	},
+	findProjectsByUserId: (userId) => {
+		return db('projects').
+			where('owner', userId).
+			then(deserializeAll);
+	},
+	findProjectsByParentId: (parentId) => {
+		return db('projects').
+			where('parent_id', parentId).
+			then(deserializeAll)
+	},
+	findAllProjectsByParentId: (parentId) => {
+		return db.raw('WITH RECURSIVE sup_projects AS ( '+
+		'SELECT p.*,0 AS depth ' +
+		'FROM projects p WHERE projectId = ? ' +
+		'UNION ' +
+		'SELECT t.*,s.depth+1 ' +
+		'FROM projects t JOIN sub_projects s ON t.parent_id = s.project_id ' +
+		') SELECT * FROM sub_projects WHERE project_id != ?',[parentId, parentId]).
+		then(deserializeAll);
+	},
+	createProject: (project) => {
+		return  db.returning('*')
+			.insert(project.toDBModel())
+			.into('projects')
+			.then(deserialize);	
+	}
 }
