@@ -1,1 +1,49 @@
 <h1 class="text-center">Projects</h1>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProject">
+Add Project
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addProjectLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addProjectLabel">Create Project</h4>
+      </div>
+      <div class="modal-body">
+        
+      <form> 
+
+      	<div class="form-group">
+			<label for="inputEmail" class="col-lg-2 control-label">Project Name</label>
+			<div class="col-lg-10">
+				<input type="text" ng-model="project.name" class="form-control" id="inputEmail" placeholder="Email">
+			</div>
+	    </div>
+
+	     	<div class="form-group">
+			<label for="inputEmail" class="col-lg-2 control-label">Project Description</label>
+			<div class="col-lg-10">
+				<input type="text" ng-model="project.description" class="form-control" id="inputEmail" placeholder="Email">
+			</div>
+	    </div>
+
+      </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="createProject(project)">Create Project</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div ng-repeat="project in projects">
+	<code>{{project}}</code>
+</div>
