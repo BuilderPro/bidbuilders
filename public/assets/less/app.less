@@ -3,10 +3,27 @@
 
 @import "variables.less";
 
+@trans: .3s;
+
 nav.navbar.navbar-default {
 	border-radius: 0;
+  border-bottom: 1px solid #969696;
 }
 
 .navbar-brand {
 	font-family: 'Patua One';
+  transition: @trans;
 }
+
+.btn {
+  transition: @trans;
+}
+
+.navbar-default .navbar-nav>li>a {
+  transition: @trans;
+}
+
+// body {
+//   background: url('/assets/bg.png') repeat;
+// }
+
