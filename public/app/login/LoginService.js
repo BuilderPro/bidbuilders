@@ -14,7 +14,6 @@ app.service('LoginService', ['$http', function($http){
 		}); 
 	}; 
 
-
 }]);
 
 

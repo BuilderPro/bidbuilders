@@ -29,7 +29,7 @@ module.exports = {
 	findUserById: findUserById,
 	findUserByEmail: findUserByEmail,
 	authenticate: (email, password) => {
-		return findUserByEmail.then((user) => {
+		return findUserByEmail(email).then((user) => {
 			if(user == null) 
 				return Promise.reject('Invalid Username')
 			else if(user.passwordIsValid(password))
