@@ -4,15 +4,12 @@
 var app = angular.module('bidBuilders');
 
 app
-  .controller('LandingCtrl', [function($scope,LandingService) {
-
-  	var user = {};
+  .controller('LandingCtrl', ['$scope', '$state', 'LandingService', function($scope, LandingService, $state) {	
 
   	$scope.signup = function(user){
-  		LandingService.signup(user); 
+  		LandingService.signup(user).then(function(success){
+  			$state.go('dashboard'); 
+  		})
   	}
-    
-
-
 }]);
 })();
