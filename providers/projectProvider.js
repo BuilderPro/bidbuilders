@@ -13,13 +13,14 @@ function deserializeAll(projects) {
 }
 
 function findProjectsByUserId(userId) {
-	return db('projects').where('owner', userId);
+	return db('projects').where('owner', userId).then(deserialize);
 }
 
 function findProjectById(projectId) {
-	return db()
+	return db('projects').where('project_id', projectId).then(deserialize)
 }
 
 module.exports = {
-	findProjectById()
+	findProjectById: findProjectById,
+	findProjectsByUserId: findProjectsByUserId
 }
