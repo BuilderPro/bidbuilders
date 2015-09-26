@@ -17,7 +17,12 @@ app
         url:'/login',
         templateUrl : 'app/login/loginView.html',
         controller : 'LoginCtrl'
-      });
+      })
+      .state('dashboard', {
+        url:'/dashboard',
+        templateUrl: 'app/dashboard/dashboardView.html', 
+        controller: 'DashboardCtrl'
+      })
 
   });
 

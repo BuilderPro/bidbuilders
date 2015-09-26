@@ -13,7 +13,7 @@ var app = express();
 //Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(__dirname+"/public/app"));
+app.use(express.static(__dirname+"/public"));
 app.use(cookieParser());
 app.use(flash());
 app.use(session({

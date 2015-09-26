@@ -1,6 +1,6 @@
 'use strict';
 var uuid = require('node-uuid');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 // private variables
 var hash = Symbol();
