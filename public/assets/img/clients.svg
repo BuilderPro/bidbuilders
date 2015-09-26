@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="593px" height="569px" viewBox="0 0 593 569" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-7-Copy-3" sketch:type="MSArtboardGroup" transform="translate(-268.000000, -90.000000)">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(271.000000, 90.000000)">
+                <path d="M84.4,238 L15.6,238 C10.87,238 7.043,241.88125 7.043,246.625 L7,298.375 C7,303.11875 10.87,307 15.6,307 L84.4,307 C89.13,307 93,303.11875 93,298.375 L93,246.625 C93,241.88125 89.13,238 84.4,238 L84.4,238 Z M85,255.571429 L50.5,277 L16,255.571429 L16,247 L50.5,268.428571 L85,247 L85,255.571429 L85,255.571429 Z" id="Shape-Copy" fill-opacity="0.7" fill="#000000" sketch:type="MSShapeGroup"></path>
+                <text id="John-D." sketch:type="MSTextLayer" font-family="Roboto" font-size="80" font-weight="260" fill="#444444">
+                    <tspan x="0" y="121">John D.</tspan>
+                </text>
+                <circle id="Oval-7" fill="#434343" sketch:type="MSShapeGroup" cx="487" cy="103" r="103"></circle>
+                <g id="Path-+-Path" transform="translate(436.000000, 52.000000)" fill="#FFFFFF" sketch:type="MSShapeGroup">
+                    <path d="M52,0 C66.3866667,0 78,11.6133333 78,26 C78,40.3866667 66.3866667,52 52,52 C37.6133333,52 26,40.3866667 26,26 C26,11.6133333 37.6133333,0 52,0 L52,0 Z" id="Path"></path>
+                    <path d="M103,102.976562 L0,102.976562 L0,94.4399771 C0,77.3668064 34.3333333,67.9765625 51.5,67.9765625 C68.6666667,67.9765625 103,77.3668064 103,94.4399771 L103,102.976562 L103,102.976562 Z" id="Path"></path>
+                </g>
+                <path d="M212.876667,267.861667 C218.396667,278.71 227.29,287.565 238.138333,293.123333 L246.571667,284.69 C247.606667,283.655 249.14,283.31 250.481667,283.77 C254.775,285.188333 259.413333,285.955 264.166667,285.955 C266.275,285.955 268,287.68 268,289.788333 L268,303.166667 C268,305.275 266.275,307 264.166667,307 C228.171667,307 199,277.828333 199,241.833333 C199,239.725 200.725,238 202.833333,238 L216.25,238 C218.358333,238 220.083333,239.725 220.083333,241.833333 C220.083333,246.625 220.85,251.225 222.268333,255.518333 C222.69,256.86 222.383333,258.355 221.31,259.428333 L212.876667,267.861667 L212.876667,267.861667 Z" id="Shape-Copy" fill-opacity="0.7" fill="#000000" sketch:type="MSShapeGroup"></path>
+                <path d="M0.5,336 L567.50354,336" id="Line" stroke="#393939" stroke-width="6" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <text id="(210)222-3333" sketch:type="MSTextLayer" font-family="Roboto" font-size="70" font-weight="260" fill="#444444">
+                    <tspan x="7" y="469">(210)222-3333</tspan>
+                </text>
+                <text id="johnD@geocities.net" sketch:type="MSTextLayer" font-family="Roboto" font-size="50" font-weight="260" fill="#444444">
+                    <tspan x="10" y="558">johnD@geocities.net</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

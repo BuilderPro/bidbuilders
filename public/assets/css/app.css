@@ -1,9 +1,62 @@
 .login {
   margin-top: 20px;
-  padding: 5px 10px;
+  padding: 5px 20px;
+  border: 1px solid white;
+  transition: 1s;
+  -webkit-transition: 1s;
 }
 
 .login:hover {
   border: 1px solid black;
   text-decoration: none;
+}
+
+.container-fluid .jumbotron  {
+  border-radius: 0px;
+}
+
+.bgcity {
+  /*background: #77A7FB no-repeat center url('/assets/img/city.jpeg');*/
+  background: #77A7FB;
+ /* height: 25vh;*/
+}
+
+#hero-text {
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+  font-family: serif;
+}
+
+.center-block {
+  text-align: center;
+}
+
+.projects-text {
+  margin: 50px;
+}
+
+nav {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.projects {
+  display: block;
+  margin: 10px auto;
+  text-indent: -9999px;
+  width: 400px;
+  height: 600px;
+  background: url(/assets/img/projects.svg) no-repeat;
+  background-size: contain;
+}
+
+.clients {
+  display: block;
+  margin: 10px auto;
+  text-indent: -9999px;
+  width: 400px;
+  height: 500px;
+  background: url(/assets/img/clients.svg) no-repeat;
+  background-size: 500px 500px;
 }
