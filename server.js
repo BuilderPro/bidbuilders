@@ -72,6 +72,16 @@ app.post('/signup', (req, res, next) => {
 		then((user) => { res.json(user) })
 });
 
+app.post('/user/:userId', (req, res, next) => {
+	var userData = req.body;
+	userData.userId = req.params.userId;
+
+	userProvider.
+		saveUser(User(userData)).
+		then(serialize).
+		then((user) => { res.json(user) })
+});
+
 app.get('/user/:userId', (req, res, next) => {
 	userProvider.
 		findUserById(req.params.userId).
@@ -79,8 +89,40 @@ app.get('/user/:userId', (req, res, next) => {
 		then((user) => { res.json(user) })
 });
 
+app.get('/user/:userId/projects', (req, res, next) => {
+	projectProvider.
+		findProjectsByUserId(req.params.userId).
+		then(serializeAll).
+		then((projects) => { res.json(projects) })
+})
+
+app.get('/user/:userId/bids', (req, res, next) => {
+	bidProvider.
+		findBidsByUserId(req.params.userId).
+		then(serializeAll).
+		then((bids) => { res.json(bids) })
+})
+
+
 
 // PROJECT ENDPOINTS
+app.post('/project', (req, res, next) => {
+	projectProvider.
+		createProject(Project(req.body)).
+		then(serialize).
+		then((project) => { res.json(project)})
+});
+
+app.post('/project/:projectId', (req, res, next) => {
+	var projectData = req.body;
+	projectData.projectId = req.params.projectId;
+
+	projectProvider.
+		saveProject(Project(projectData)).
+		then(serialize).
+		then((project) => { res.json(project)})
+});
+
 app.get('/project/:projectId', (req, res, next) => {
 	projectProvider.
 		findProjectById(req.params.projectId).
@@ -88,12 +130,6 @@ app.get('/project/:projectId', (req, res, next) => {
 		then((project) => { res.json(project) })
 });
 
-app.post('/project', (req, res, next) => {
-	projectProvider.
-		createProject(Project(req.body)).
-		then(serialize).
-		then((project) => { res.json(project)})
-});
 
 app.get('/project/:parentId/subs', (req, res, next) => {
 	projectProvider.
@@ -107,21 +143,38 @@ app.get('/project/:parentId/all', (req, res, next) => {
 		findAllProjectsByParentId(req.params.parentId).
 		then(serializeAll).
 		then((projects) => { res.json(projects) })
-})
-
-// BID ENDPOINTS
-app.get('/bid/:bidId', (req, res, next) => {
-	bidProvider.
-		findBidById(req.params.bidId).
-		then(serialize).
-		then((bid) => { res.json(bid)})
 });
 
+app.get('/project/:projectId/bids', (req, res, next) => {
+	bidProvider.
+		findBidsByProjectId(req.params.projectId).
+		then(serializeAll).
+		then((bids) => { req.json(bids) })
+});
+
+// BID ENDPOINTS
 app.post('/bid', (req, res, next) => {
 	bidProvider.
 		createBid(Bid(req.body)).
 		then(serialize).
 		then((bid) => { res.json(bid)})
+});
+
+app.post('/bid/:bidId', (req, res, next) => {
+	var bidData = req.body;
+	bidData.bidId = req.params.bidId;
+
+	bidProvider.
+		saveBid(Bid(bidData)).
+		then(serialize).
+		then((bid) => { res.json(bid)})
+});
+
+app.get('/bid/:bidId', (req, res, next) => {
+	bidProvider.
+		findBidById(req.params.bidId).
+		then(serialize).
+		then((bid) => { res.json(bid) })
 });
 
 

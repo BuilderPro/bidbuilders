@@ -50,6 +50,12 @@ module.exports = {
 		') SELECT * FROM sub_projects WHERE project_id != ?',[parentId, parentId]).
 		then((result) => deserializeAll(result.rows));
 	},
+	saveProject: (project) => {
+		return db('projects')
+			.where('project_id', project.projectId)
+			.update(project.toUpdateSafeDBModel(), '*').
+			then(deserialize)
+	},
 	createProject: (project) => {
 		return  db.returning('*')
 			.insert(project.toDBModel())
