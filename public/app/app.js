@@ -21,12 +21,7 @@ app
       .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'app/dashboard/dashboardView.html', 
-        controller: 'DashboardCtrl',
-        resolve: {
-          console: function(){
-            console.log("Dashboard resolve"); //works 
-          }
-        }
+        controller: 'DashboardCtrl'
       })
       .state('projects', {
         url: '/projects', 
