@@ -1,49 +1,39 @@
-<h1 class="text-center">Projects</h1>
+<div class="row">
+    <h1 class="text-center">Projects</h1>
+</div>
 
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProject">
-Add Project
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="addProject" tabindex="-1" role="dialog" aria-labelledby="addProjectLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addProjectLabel">Create Project</h4>
-      </div>
-      <div class="modal-body">
-        
-      <form> 
-
-      	<div class="form-group">
-			<label for="inputEmail" class="col-lg-2 control-label">Project Name</label>
-			<div class="col-lg-10">
-				<input type="text" ng-model="project.name" class="form-control" id="inputEmail" placeholder="Email">
-			</div>
-	    </div>
-
-	     	<div class="form-group">
-			<label for="inputEmail" class="col-lg-2 control-label">Project Description</label>
-			<div class="col-lg-10">
-				<input type="text" ng-model="project.description" class="form-control" id="inputEmail" placeholder="Email">
-			</div>
-	    </div>
-
-      </form>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="createProject(project)">Create Project</button>
-      </div>
+<!-- project tiles --> 
+<div class="row">
+  <div class="col-md-4">
+    <div ng-repeat="project in projects">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{project.name}}</div>
+            <div class="panel-body">
+                {{project.description}}
+            </div>
+        </div>
     </div>
   </div>
 </div>
 
-
-<div ng-repeat="project in projects">
-	<code>{{project}}</code>
+<div class="row">
+  <h3>Create A New Project</h3>
+  <div class="col-md-8">
+    <form> 
+        <div class="form-group">
+          <label for="inputEmail" class="col-lg-2 control-label">Project Name</label>
+          <div class="col-lg-10">
+            <input type="text" ng-model="project.name" class="form-control" id="inputEmail" placeholder="Project Name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail" class="col-lg-2 control-label">Project Description</label>
+          <div class="col-lg-10">
+            <input type="text" ng-model="project.description" class="form-control" id="inputEmail" placeholder="Project Description">
+          </div>
+        </div>
+        <button ng-click="createProject(project)" class="btn btn-default">Create Project</button>
+    </form>
+  </div>
 </div>
+

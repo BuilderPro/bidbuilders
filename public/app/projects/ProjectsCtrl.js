@@ -20,7 +20,8 @@ app
             "name": project.name,
             "description": project.description
         }).then(function(project){
-            toaster.pop('success', "Project Created!", "Your project has been created"); 
+            ProjectsService.listProjects()
+            $scope.$apply(); 
         });
     };
 
