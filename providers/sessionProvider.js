@@ -6,25 +6,28 @@ var userProvider = require('./userProvider')
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
-}, function(email, password, done) {
+}, (email, password, done) => {
     console.log(email, password)
-    userProvider.authenticate(email, password)
-    	.then(function authenticated(user) {
-    		return done(null, user);
-    	}, function handleError(errorMessage) {
+    userProvider.
+      authenticate(email, password).
+      then((user) => {
+        return done(null, user);
+    	}, (errorMessage) => {
     		return done(null, false, { message:errorMessage })
     	})
 }));
 
 // session deserializer
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.userId);
 });
 
-passport.deserializeUser(function(userId, done) {
-  pg.findByUserId(userId, function (err, user) {
-    done(err, user);
-  });
+passport.deserializeUser((userId, done) => {
+  userProvider.
+    findUserById(userId).
+    then((user) => {
+      done(null, user);
+    });
 });
 
 module.exports = passport;

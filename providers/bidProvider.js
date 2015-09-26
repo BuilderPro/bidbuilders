@@ -1,13 +1,38 @@
 var db = require('./pgProvider');
 var Promise = require("bluebird");
+var Bid = require('../models/Bid')
 
-
-
-
-function findBidsByUserId(userId) {
-	return db('bids').where('owner', userId);
+function deserialize(response) {
+	var bid = response[0];
+	return Promise.resolve(bid == null ? null : Bid(bid))
 }
 
-function findBidsByProjectId(projectId) {
-	return db('bids').where('project_id', projectId);
+function deserializeAll(bids) {
+	if(bids == null) 		return Promise.resolve(null)
+	if(Array.isArray(bids)) return Promise.resolve(bids.map(Bid))
+	else 					return Promise.resolve(Bid(bids))
+}
+
+module.exports = {
+	findBidById: (bidId) => {
+		return db('bids').
+			where('bid_id', bidId).
+			then(deserialize);
+	},
+	findBidsByProjectId: (projectId) => {
+		return db('bids').
+			where('project_id', projectId).
+			then(deserializeAll);
+	},
+	findBidsByUserId: (userId) => {
+		return db('bids').
+			where('owner', userId).
+			then(deserializeAll);
+	},
+	createBid: (bid) => {
+		return db.returning('*')
+			.insert(bid.toDBModel())
+			.into('bids')
+			.then(deserialize);	
+	}
 }

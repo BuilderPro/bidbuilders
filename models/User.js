@@ -7,22 +7,23 @@ var hash = Symbol();
 
 class User {
 	constructor(data) {
-	    this.userId = data.userId || uuid.v4();
+	    this.userId = data.userId || data.user_id || uuid.v4();
 	    this.firstname = data.firstname;
 	    this.lastname = data.lastname;
 	    this.email = data.email;
-	    this.userType = data.userType;
+	    this.userType = data.userType || data.user_type;
 	    this[hash] = data.hash || bcrypt.hashSync(data.password, 10);
 	}
 
-	get name() { return this.firstname + this.lastname }
+	get name() { return this.firstname + ' ' + this.lastname }
 
 	passwordIsValid(password) {
 		return bcrypt.compareSync(password, this[hash])
 	}
 
-	toJson() {
+	toUIModel() {
 		return {
+			userId: this.userId,
 			email: this.email,
 			firstname: this.firstname,
 			lastname: this.lastname,
@@ -30,7 +31,7 @@ class User {
 		}
 	}
 
-	toDbModel() {
+	toDBModel() {
 		return  {
 			user_id: this.userId,
 			email: this.email,
@@ -43,6 +44,4 @@ class User {
 
 }
 
-module.exports = function(userData) {
-	return new User(userData);
-}
+module.exports = (userData) => new User(userData);

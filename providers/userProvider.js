@@ -4,28 +4,32 @@ var User = require('../models/User.js')
 
 function deserialize(response) {
 	var user = response[0];
-	if(user == null) 
-		return Promise.resolve(null)
-	else 
-		return Promise.resolve(User(user))
+	return Promise.resolve(user == null ? null : User(user))
 }
 
 function deserializeAll(users) {
-	if(users == null) return Promise.resolve(null)
-	if(Array.isArray(users)) return Promise.resolve(users.map(User))
+	if(users == null) 			return Promise.resolve(null)
+	if(Array.isArray(users)) 	return Promise.resolve(users.map(User))
+	else 						return Promise.resolve(User(users));
 }
 
 function findUserByEmail(email) {
-	return db('users').where('email', email).then(deserialize);
+	return db('users').
+		where('email', email).
+		then(deserialize);
 }
 
-function findUserByUserId(userId) {
-	return db('users').where('user_id', userId).then(deserialize);
+function findUserById(userId) {
+	return db('users').
+		where('user_id', userId).
+		then(deserialize);
 }
 
 module.exports = {
-	authenticate: function(email, password) {
-		return findUserByEmail.then(function(user) {
+	findUserById: findUserById,
+	findUserByEmail: findUserByEmail,
+	authenticate: (email, password) => {
+		return findUserByEmail.then((user) => {
 			if(user == null) 
 				return Promise.reject('Invalid Username')
 			else if(user.passwordIsValid(password))
@@ -34,12 +38,15 @@ module.exports = {
 				return Promise.reject('Invalid Password')
 		});
 	},
-	createUser: function(user) {
-		return findUserByEmail(user.email).then(function(existingUser) {
+	createUser: (user) => {
+		return findUserByEmail(user.email).then((existingUser) => {
 			if(existingUser != null)
 				return Promise.reject('User email already exists');
 
-			return db.returning('*').insert(user.toDbModel()).into('users').then(deserialize)
+			return db.returning('*')
+				.insert(user.toDBModel())
+				.into('users')
+				.then(deserialize)
 		});
 	}
 }
