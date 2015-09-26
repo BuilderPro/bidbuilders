@@ -29,15 +29,15 @@ app.service('ProjectsService', ['$http', function($http){
 			}, function(err){
 				if(err) console.log("err: ", err); 
 			})
-	}; 
+	};
 
-	this.deleteProject = function(projectId){
-		//
-	}; 
+	// this.deleteProject = function(projectId){
+	// 
+	// }; 
 
-	this.updateProject = function(project){
-		//
-	}; 
+	// this.updateProject = function(project){
+	// 
+	// }; 
 
 }]); 
 })();

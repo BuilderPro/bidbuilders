@@ -9,13 +9,14 @@ app
 
 	console.log("ProjectCtrl hit");
 
-	ProjectsService.listProjects();         
+	ProjectsService.listProjects();        
     
     $scope.createProject = function(project){
-    	ProjectsService.createProject(project).then(function(project){
+    	ProjectsService.createProject(project)
+    	.then(function(project){
     		toaster.pop('success', "Project Created", "Your project was created"); 
-    	})
-    }
+    	});
+    };
 
 }]);
 })();
