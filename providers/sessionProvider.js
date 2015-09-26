@@ -22,8 +22,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(userId, done) {
-  pg.findByUserId(userId, function (err, user) {
-    done(err, user);
+  userProvider.findUserById(userId).then(function (user) {
+    done(null, user);
   });
 });
 

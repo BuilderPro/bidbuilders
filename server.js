@@ -4,11 +4,15 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var session = require('express-session');
 var passport = require('./providers/sessionProvider');
-var userProvider = require('./providers/userProvider');
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var bson = require('bson');
 var app = express();
+
+//Providers
+var userProvider = require('./providers/userProvider');
+var projectProvider = require('./providers/projectProvider');
+var bidProvider = require('./providers/bidProvider');
 
 //Middleware
 app.use(cors());
@@ -36,6 +40,12 @@ var User = require('./models/User.js')
 //     return next();
 // }
 
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
 app.post('/signup', function(req, res, next) {
 	userProvider.createUser(User(req.body))
 	.then(function(createdUser) {
@@ -43,11 +53,11 @@ app.post('/signup', function(req, res, next) {
 	})
 })
 
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
+
+
+app.get('/project/:projectId', function(req, res, next) {
+	userProvider.
+})
 
 //Set Server
 var port = process.env.EXPRESS_PORT || 8080; 

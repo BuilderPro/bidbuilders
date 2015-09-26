@@ -4,10 +4,7 @@ var User = require('../models/User.js')
 
 function deserialize(response) {
 	var user = response[0];
-	if(user == null) 
-		return Promise.resolve(null)
-	else 
-		return Promise.resolve(User(user))
+	return Promise.resolve(user == null ? null : User(user))
 }
 
 function deserializeAll(users) {
@@ -16,11 +13,15 @@ function deserializeAll(users) {
 }
 
 function findUserByEmail(email) {
-	return db('users').where('email', email).then(deserialize);
+	return db('users')
+		.where('email', email)
+		.then(deserialize);
 }
 
-function findUserByUserId(userId) {
-	return db('users').where('user_id', userId).then(deserialize);
+function findUserById(userId) {
+	return db('users')
+		.where('user_id', userId)
+		.then(deserialize);
 }
 
 module.exports = {
@@ -34,12 +35,18 @@ module.exports = {
 				return Promise.reject('Invalid Password')
 		});
 	},
+	findUserById: findUserById,
+	findUserByEmail: findUserByEmail,
 	createUser: function(user) {
-		return findUserByEmail(user.email).then(function(existingUser) {
-			if(existingUser != null)
-				return Promise.reject('User email already exists');
+		return findUserByEmail(user.email)
+			.then(function(existingUser) {
+				if(existingUser != null)
+					return Promise.reject('User email already exists');
 
-			return db.returning('*').insert(user.toDbModel()).into('users').then(deserialize)
+				return db.returning('*')
+					.insert(user.toDbModel())
+					.into('users')
+					.then(deserialize)
 		});
 	}
 }
