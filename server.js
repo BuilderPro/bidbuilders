@@ -44,12 +44,13 @@ var Bid = require('./models/Bid.js')
 // }
 
 // HELPERS
-function serialize(es6model) {
-	return Promise.resolve(es6model.toUIModel());
+function serialize(model) {
+	return Promise.resolve(model.toUIModel());
 }
 
-function serializeAll(es6models) {
-	return Promise.resolve(es6models.map(serialize))
+function serializeAll(models) {
+	console.log(models)
+	return Promise.resolve(models.map((model) => model.toUIModel()))
 }
 
 
@@ -60,6 +61,9 @@ app.post('/login',
                                    failureFlash: true })
 );
 
+app.get('/user', (req, res, next) => {
+	res.json(req.user.toUIModel())
+})
 
 // USER ENDPOINTS
 app.post('/signup', (req, res, next) => {

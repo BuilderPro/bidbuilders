@@ -15,9 +15,9 @@ function deserializeAll(projects) {
 }
 
 function findProjectsByParentId(parentId) {
-	return db.raw('WITH RECURSIVE sup_projects AS ( '+
+	return db.raw('WITH RECURSIVE sub_projects AS ( '+
 		'SELECT p.*,0 AS depth ' +
-		'FROM projects p WHERE projectId = ? ' +
+		'FROM projects p WHERE project_id = ? ' +
 		'UNION ' +
 		'SELECT t.*,s.depth+1 ' +
 		'FROM projects t JOIN sub_projects s ON t.parent_id = s.project_id ' +
@@ -42,14 +42,14 @@ module.exports = {
 			then(deserializeAll)
 	},
 	findAllProjectsByParentId: (parentId) => {
-		return db.raw('WITH RECURSIVE sup_projects AS ( '+
+		return db.raw('WITH RECURSIVE sub_projects AS ( '+
 		'SELECT p.*,0 AS depth ' +
-		'FROM projects p WHERE projectId = ? ' +
+		'FROM projects p WHERE project_id = ? ' +
 		'UNION ' +
 		'SELECT t.*,s.depth+1 ' +
 		'FROM projects t JOIN sub_projects s ON t.parent_id = s.project_id ' +
 		') SELECT * FROM sub_projects WHERE project_id != ?',[parentId, parentId]).
-		then(deserializeAll);
+		then((result) => deserialize(result.rows));
 	},
 	createProject: (project) => {
 		return  db.returning('*')
