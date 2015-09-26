@@ -4,14 +4,14 @@ General contractor and client communication and bidding tool.
 # api
 
 ### POST: /signup
-input: 
+input: (valid userTypes: ['general_contractor', 'sub_contractor', 'engineer', 'architect', 'owner'])
 ```json
 {
       "firstname":"Test",
       "lastname":"User",
       "email":"test@bidbuilder.xyz",
       "password":"password",
-      "userType":"owner" // types: ['general_contractor', 'sub_contractor', 'engineer', 'architect', 'owner']
+      "userType":"owner" 
 }
 ```
 
