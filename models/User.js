@@ -12,7 +12,7 @@ class User {
 	    this.lastname = data.lastname;
 	    this.email = data.email;
 	    this.userType = data.userType || data.user_type;
-	    this[hash] = data.hash || bcrypt.hashSync(data.password, 10);
+	    this[hash] = data.hash || (data.password == null ? undefined : bcrypt.hashSync(data.password, 10));
 	}
 
 	get name() { return this.firstname + ' ' + this.lastname }
@@ -39,6 +39,16 @@ class User {
 			lastname: this.lastname,
 			user_type: this.userType,
 			hash: this[hash]
+		}
+	}
+
+	// ensures we never overwrite hash
+	toUpdateSafeDBModel() {
+		return  {
+			email: this.email,
+			firstname: this.firstname,
+			lastname: this.lastname,
+			user_type: this.userType
 		}
 	}
 

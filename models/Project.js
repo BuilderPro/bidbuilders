@@ -33,6 +33,16 @@ class Project {
 		}
 	}
 
+	// ensures we never overwrite parent_id
+	toUpdateSafeDBModel() {
+		return  {
+			owner: this.owner,
+			accepted_bid: this.acceptedBid,
+			name: this.name,
+			description: this.description
+		}
+	}
+
 }
 
 module.exports = (projectData) => new Project(projectData);

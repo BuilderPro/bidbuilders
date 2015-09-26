@@ -38,6 +38,12 @@ module.exports = {
 				return Promise.reject('Invalid Password')
 		});
 	},
+	saveUser: (user) => {
+		return db('users')
+			.where('user_id', user.userId)
+			.update(user.toUpdateSafeDBModel(), '*').
+			then(deserialize)
+	},
 	createUser: (user) => {
 		return findUserByEmail(user.email).then((existingUser) => {
 			if(existingUser != null)

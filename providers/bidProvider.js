@@ -29,6 +29,12 @@ module.exports = {
 			where('owner', userId).
 			then(deserializeAll);
 	},
+	saveBid: (bid) => {
+		return db('bids')
+			.where('bid_id', bid.bidId)
+			.update(bid.toUpdateSafeDBModel(), '*').
+			then(deserialize)
+	},
 	createBid: (bid) => {
 		return db.returning('*')
 			.insert(bid.toDBModel())

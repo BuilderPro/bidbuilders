@@ -27,6 +27,13 @@ class Project {
 		}
 	}
 
+	// ensures we never overwrite project_id, owner
+	toUpdateSafeDBModel() {
+		return  {
+			amount: this.amount
+		}
+	}
+
 }
 
 module.exports = (bidData) => new Project(bidData);

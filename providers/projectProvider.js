@@ -8,7 +8,6 @@ function deserialize(response) {
 }
 
 function deserializeAll(projects) {
-	console.log(projects)
 	if(projects == null) 		return Promise.resolve(null)
 	if(Array.isArray(projects)) return Promise.resolve(projects.map(Project))
 	else 						return Promise.resolve(Project(projects))
@@ -49,7 +48,13 @@ module.exports = {
 		'SELECT t.*,s.depth+1 ' +
 		'FROM projects t JOIN sub_projects s ON t.parent_id = s.project_id ' +
 		') SELECT * FROM sub_projects WHERE project_id != ?',[parentId, parentId]).
-		then((result) => deserialize(result.rows));
+		then((result) => deserializeAll(result.rows));
+	},
+	saveProject: (project) => {
+		return db('projects')
+			.where('project_id', project.projectId)
+			.update(project.toUpdateSafeDBModel(), '*').
+			then(deserialize)
 	},
 	createProject: (project) => {
 		return  db.returning('*')
