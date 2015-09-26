@@ -12,8 +12,6 @@ app
 		if(err) console.log("get User err: ", err); 
 	});
 
-	console.log($scope.user);
-
   	$scope.createProject = function(project){
   		console.log("Create project"); 
   	}

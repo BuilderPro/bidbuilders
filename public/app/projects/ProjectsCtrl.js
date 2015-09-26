@@ -8,8 +8,7 @@ app
     function($scope, $http, $state, ProjectService, toaster) {
 
     console.log("ProjectsCtrl"); 
-
-       toaster.pop('success', "title", "text");
+	toaster.pop('success', "title", "text");
        
 
 
