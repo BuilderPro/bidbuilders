@@ -10,16 +10,15 @@
         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="user.password">
       </div>
       <div class="form-group">
-        <select ng-model="user.userType" class="form-control">
-          <option value="none">-- What are you? --</option>
+        <select ng-model="user.userType" class="form-control" placeholder="What are you?">
+          <option value="" disabled selected>What are you? </option>
           <option value="owner">Owner</option>
           <option value="general_contractor">General Contractor</option>
-          <option value="sub">Sub Contractor</option>
+          <option value="sub_contractor">Sub Contractor</option>
           <option value="engineer">Engineer</option>
           <option value="architect">Architect</option>
         </select>
       </div>
-        <!-- <div class="text-danger"><strong>{{error}}</strong></div> -->
-      <button type="submit" class="btn btn-default col-xs-12" ng-submit="signup(user)">Submit</button>
+      <button type="submit" class="btn btn-default col-xs-12" ng-click="signup(user)">Submit</button>
     </form>
 </div>
