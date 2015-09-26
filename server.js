@@ -47,17 +47,36 @@ app.post('/login',
 );
 
 app.post('/signup', function(req, res, next) {
-	userProvider.createUser(User(req.body))
-	.then(function(createdUser) {
-		res.json(createdUser.toUIModel())
-	})
+	userProvider.
+		createUser(User(req.body)).
+		then(function(createdUser) {
+			res.json(createdUser.toUIModel())
+		})
 });
 
 app.get('/project/:projectId', function(req, res, next) {
-	projectProvider.findProjectById(res.path.projectId).then(function(project) {
-		res.json(project.toUIModel())
-	})
+	projectProvider.
+		findProjectById(res.params.projectId).
+		then(function(project) {
+			res.json(project.toUIModel())
+		})
 });
+
+app.get('/bid/:bidId', function(req, res, next) {
+	bidProvider.
+		findBidById(res.params.bidId).
+		then(function(bid) {
+			res.json(bid.toUIModel())
+		})
+})
+
+app.get('/user/:userId', function(req, res, next) {
+	userProvider.
+		findUserById(res.params.userId).
+		then(function(user) {
+			res.json(user.toUIModel())
+		})
+})
 
 //Set Server
 var port = process.env.EXPRESS_PORT || 8080; 

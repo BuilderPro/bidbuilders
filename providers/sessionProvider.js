@@ -8,9 +8,10 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
 }, function(email, password, done) {
     console.log(email, password)
-    userProvider.authenticate(email, password)
-    	.then(function authenticated(user) {
-    		return done(null, user);
+    userProvider.
+      authenticate(email, password).
+      then(function authenticated(user) {
+        return done(null, user);
     	}, function handleError(errorMessage) {
     		return done(null, false, { message:errorMessage })
     	})
@@ -22,9 +23,11 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(userId, done) {
-  userProvider.findUserById(userId).then(function (user) {
-    done(null, user);
-  });
+  userProvider.
+    findUserById(userId).
+    then(function (user) {
+      done(null, user);
+    });
 });
 
 module.exports = passport;

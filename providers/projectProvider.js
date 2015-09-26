@@ -8,17 +8,21 @@ function deserialize(response) {
 }
 
 function deserializeAll(projects) {
-	if(projects == null) return Promise.resolve(null)
+	if(projects == null) 		return Promise.resolve(null)
 	if(Array.isArray(projects)) return Promise.resolve(projects.map(Project))
-	else return Promise.resolve(Project(projects))
+	else 						return Promise.resolve(Project(projects))
 }
 
 function findProjectsByUserId(userId) {
-	return db('projects').where('owner', userId).then(deserializeAll);
+	return db('projects').
+		where('owner', userId).
+		then(deserializeAll);
 }
 
 function findProjectById(projectId) {
-	return db('projects').where('project_id', projectId).then(deserialize)
+	return db('projects').
+		where('project_id', projectId).
+		then(deserialize)
 }
 
 module.exports = {

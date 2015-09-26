@@ -1,9 +1,6 @@
 'use strict';
 var uuid = require('node-uuid');
 
-// private variables
-var hash = Symbol();
-
 class Project {
 	constructor(data) {
 		this.bidId = data.bidId || data.bid_id || uuid.v4();

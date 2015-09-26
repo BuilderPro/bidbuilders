@@ -8,21 +8,21 @@ function deserialize(response) {
 }
 
 function deserializeAll(users) {
-	if(users == null) return Promise.resolve(null)
-	if(Array.isArray(users)) return Promise.resolve(users.map(User))
-	else return Promise.resolve(User(users));
+	if(users == null) 			return Promise.resolve(null)
+	if(Array.isArray(users)) 	return Promise.resolve(users.map(User))
+	else 						return Promise.resolve(User(users));
 }
 
 function findUserByEmail(email) {
-	return db('users')
-		.where('email', email)
-		.then(deserialize);
+	return db('users').
+		where('email', email).
+		then(deserialize);
 }
 
 function findUserById(userId) {
-	return db('users')
-		.where('user_id', userId)
-		.then(deserialize);
+	return db('users').
+		where('user_id', userId).
+		then(deserialize);
 }
 
 module.exports = {
@@ -39,15 +39,14 @@ module.exports = {
 		});
 	},
 	createUser: function(user) {
-		return findUserByEmail(user.email)
-			.then(function(existingUser) {
-				if(existingUser != null)
-					return Promise.reject('User email already exists');
+		return findUserByEmail(user.email).then(function(existingUser) {
+			if(existingUser != null)
+				return Promise.reject('User email already exists');
 
-				return db.returning('*')
-					.insert(user.toDBModel())
-					.into('users')
-					.then(deserialize)
+			return db.returning('*')
+				.insert(user.toDBModel())
+				.into('users')
+				.then(deserialize)
 		});
 	}
 }

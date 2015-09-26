@@ -23,6 +23,7 @@ class User {
 
 	toUIModel() {
 		return {
+			userId: this.userId,
 			email: this.email,
 			firstname: this.firstname,
 			lastname: this.lastname,

@@ -8,17 +8,21 @@ function deserialize(response) {
 }
 
 function deserializeAll(bids) {
-	if(bids == null) return Promise.resolve(null)
+	if(bids == null) 		return Promise.resolve(null)
 	if(Array.isArray(bids)) return Promise.resolve(bids.map(Bid))
-	else return Promise.resolve(Bid(bids))
+	else 					return Promise.resolve(Bid(bids))
 }
 
 function findBidsByUserId(userId) {
-	return db('bids').where('owner', userId).then(deserializeAll);
+	return db('bids').
+		where('owner', userId).
+		then(deserializeAll);
 }
 
 function findBidsByProjectId(projectId) {
-	return db('bids').where('project_id', projectId).then(deserializeAll);
+	return db('bids').
+		where('project_id', projectId).
+		then(deserializeAll);
 }
 
 module.exports = {
