@@ -10,7 +10,8 @@ app
 	console.log("ProjectCtrl hit");
 
 	$http.get('/projects').then(function(projects){
-        $scope.projects = projects; 
+        console.log("PROJECTS", projects.data)
+        $scope.projects = projects.data; 
     }, function(err){
         if(err) console.log("Error getting projects. ", err); 
     }); 
