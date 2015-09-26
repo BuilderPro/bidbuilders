@@ -5,6 +5,7 @@ General contractor and client communication and bidding tool.
 
 ### POST: /signup
 input: 
+```json
 {
       "firstname":"Test",
       "lastname":"User",
@@ -12,8 +13,10 @@ input:
       "password":"password",
       "userType":"owner" // types: ['general_contractor', 'sub_contractor', 'engineer', 'architect', 'owner']
 }
+```
 
 output:
+```json
 {
     "userId": "f4fa7709-9189-4cdf-898a-82264bfb6555",
     "email": "test@bidbuilder.xyz",
@@ -21,3 +24,4 @@ output:
     "lastname":"User",
     "userType": "owner"
 }
+```
