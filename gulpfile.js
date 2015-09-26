@@ -13,7 +13,7 @@ html2js = require('gulp-angular-templatecache')
 
 gulp.task('styles', function() {
 	return gulp.src([
-    'public/assets/less/app.less'
+    'public/assets/less/app.less',
   ])
 	.pipe(less())
 	.pipe(rename('bb.min.css'))
@@ -74,7 +74,7 @@ gulp.task('minify', ['template-cache'], function(){
     .pipe(notify({ message: 'app re-compiled' }));
 });
 
-gulp.task('js', ['lint', 'plugins', 'minify']);
+gulp.task('js', ['plugins', 'minify']);
 gulp.task('css', ['styles', 'fonts']);
 gulp.task('default', ['js', 'css']);
 
@@ -85,6 +85,7 @@ gulp.task('watch', ['default'], function() {
   ], ['js'])
 
   gulp.watch([
-    'public/assets/app.less'
+    'public/assets/less/app.less',
+    'public/assets/less/variables.less'
   ], ['css'])
 });

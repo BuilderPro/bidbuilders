@@ -7,7 +7,6 @@ passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
 }, (email, password, done) => {
-    console.log(email, password)
     userProvider.
       authenticate(email, password).
       then((user) => {
