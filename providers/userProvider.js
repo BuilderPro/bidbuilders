@@ -28,8 +28,8 @@ function findUserById(userId) {
 module.exports = {
 	findUserById: findUserById,
 	findUserByEmail: findUserByEmail,
-	authenticate: function(email, password) {
-		return findUserByEmail.then(function(user) {
+	authenticate: (email, password) => {
+		return findUserByEmail.then((user) => {
 			if(user == null) 
 				return Promise.reject('Invalid Username')
 			else if(user.passwordIsValid(password))
@@ -38,8 +38,8 @@ module.exports = {
 				return Promise.reject('Invalid Password')
 		});
 	},
-	createUser: function(user) {
-		return findUserByEmail(user.email).then(function(existingUser) {
+	createUser: (user) => {
+		return findUserByEmail(user.email).then((existingUser) => {
 			if(existingUser != null)
 				return Promise.reject('User email already exists');
 

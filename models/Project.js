@@ -35,6 +35,4 @@ class Project {
 
 }
 
-module.exports = function(userData) {
-	return new Project(userData);
-}
+module.exports = (bidData) => new Project(userData);

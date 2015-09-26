@@ -44,6 +44,4 @@ class User {
 
 }
 
-module.exports = function(userData) {
-	return new User(userData);
-}
+module.exports = (userData) => new User(userData);

@@ -6,26 +6,26 @@ var userProvider = require('./userProvider')
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
-}, function(email, password, done) {
+}, (email, password, done) => {
     console.log(email, password)
     userProvider.
       authenticate(email, password).
-      then(function authenticated(user) {
+      then((user) => {
         return done(null, user);
-    	}, function handleError(errorMessage) {
+    	}, (errorMessage) => {
     		return done(null, false, { message:errorMessage })
     	})
 }));
 
 // session deserializer
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) => {
   done(null, user.userId);
 });
 
-passport.deserializeUser(function(userId, done) {
+passport.deserializeUser((userId, done) => {
   userProvider.
     findUserById(userId).
-    then(function (user) {
+    then((user) => {
       done(null, user);
     });
 });

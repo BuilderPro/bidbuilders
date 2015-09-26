@@ -46,7 +46,7 @@ app.post('/login',
                                    failureFlash: true })
 );
 
-app.post('/signup', function(req, res, next) {
+app.post('/signup', (req, res, next) => {
 	userProvider.
 		createUser(User(req.body)).
 		then(function(createdUser) {
@@ -54,7 +54,7 @@ app.post('/signup', function(req, res, next) {
 		})
 });
 
-app.get('/project/:projectId', function(req, res, next) {
+app.get('/project/:projectId', (req, res, next) => {
 	projectProvider.
 		findProjectById(res.params.projectId).
 		then(function(project) {
@@ -62,7 +62,7 @@ app.get('/project/:projectId', function(req, res, next) {
 		})
 });
 
-app.get('/bid/:bidId', function(req, res, next) {
+app.get('/bid/:bidId', (req, res, next) => {
 	bidProvider.
 		findBidById(res.params.bidId).
 		then(function(bid) {
@@ -70,11 +70,11 @@ app.get('/bid/:bidId', function(req, res, next) {
 		})
 })
 
-app.get('/user/:userId', function(req, res, next) {
+app.get('/user/:userId', (req, res, next) => {
 	userProvider.
 		findUserById(res.params.userId).
-		then(function(user) {
-			res.json(user.toUIModel())
+		then((user) => { 
+			res.json(user.toUIModel()) 
 		})
 })
 
