@@ -11,7 +11,13 @@
               {{project.description}}
               <div class="container-fluid">
                 <div class="row">
-                  <a href="#" class="btn btn-default center">Create A Bid</a>
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter bidder's email to invite." ng-model="invite.email"> 
+                      <button ng-click="inviteBid(email, project.projectId)">
+                    </div>
+                  </form>
                 </div>
               </div>
           </div>
