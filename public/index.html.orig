@@ -25,8 +25,36 @@
 
    <!-- Load App Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<<<<<<< HEAD
+  <script src='node_modules/angularjs-toaster/toaster.js'></script>
+  <link href='node_modules/angularjs-toaster/toaster.css' rel='stylesheet' />
+
+
+   <!-- Angular Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src='/app/app.js'></script>
+
+  <script src='/app/login/LoginCtrl.js'></script>
+  <script src='/app/login/LoginService.js'></script>
+
+  <script src='/app/landing/LandingCtrl.js'></script>
+  <script src='/app/landing/LandingService.js'></script>
+  
+  <script src="/app/dashboard/dashboardService.js"></script>
+  <script src="/app/dashboard/dashboardCtrl.js"></script>
+
+  <script src="/app/projects/ProjectsCtrl.js"></script> 
+  <script src="/app/projects/ProjectsService.js"></script>
+
+  <script src="/app/bids/BidCtrl.js"></script>
+
+  <!-- Service Scripts --> 
+  <script src='/app/login/LoginService.js'></script>
+  
+=======
   <script src='/dist/plugins.min.js'></script>
   <script src='/dist/bb.js'></script>
+>>>>>>> ab875f2287c67a9b8cd2027a66f2554212a3763d
 
   <link href='bower_components/AngularJS-Toaster/toaster.min.css' rel='stylesheet' />
 

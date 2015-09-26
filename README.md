@@ -49,6 +49,9 @@ output:
 }
 ```
 
+### GET: /user
+// returns current user
+
 ### GET: /user/:userId
 output:
 ```json
@@ -83,6 +86,9 @@ output:
   "description": "Lay down carpet in the Chamber of Secrets"
 }
 ```
+
+### GET: /projects
+// returns array of projects for current user
 
 ### GET: /project/:projectId
 output:
@@ -151,3 +157,9 @@ output:
   "amount": "$1,000,000.50"
 }
 ```
+
+### GET: /bids
+// return array of bids owned by current user
+
+
+

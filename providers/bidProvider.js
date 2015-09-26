@@ -13,12 +13,14 @@ function deserializeAll(bids) {
 	else 					return Promise.resolve(Bid(bids))
 }
 
+function findBidById(bidId) {
+	return db('bids').
+		where('bid_id', bidId).
+		then(deserialize);
+}
+
 module.exports = {
-	findBidById: (bidId) => {
-		return db('bids').
-			where('bid_id', bidId).
-			then(deserialize);
-	},
+	findBidById: findBidById,
 	findBidsByProjectId: (projectId) => {
 		return db('bids').
 			where('project_id', projectId).
@@ -30,6 +32,9 @@ module.exports = {
 			then(deserializeAll);
 	},
 	saveBid: (bid) => {
+		if(!bid.isUpdatable())
+			return findBidById(bid.bidId)
+
 		return db('bids')
 			.where('bid_id', bid.bidId)
 			.update(bid.toUpdateSafeDBModel(), '*').

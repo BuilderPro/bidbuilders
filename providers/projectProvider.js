@@ -13,23 +13,14 @@ function deserializeAll(projects) {
 	else 						return Promise.resolve(Project(projects))
 }
 
-function findProjectsByParentId(parentId) {
-	return db.raw('WITH RECURSIVE sub_projects AS ( '+
-		'SELECT p.*,0 AS depth ' +
-		'FROM projects p WHERE project_id = ? ' +
-		'UNION ' +
-		'SELECT t.*,s.depth+1 ' +
-		'FROM projects t JOIN sub_projects s ON t.parent_id = s.project_id ' +
-		') SELECT * FROM sub_projects WHERE project_id != ?',[parentId, parentId]).
-		then(deserializeAll);
+function findProjectById(projectId) {
+	return db('projects').
+		where('project_id', projectId).
+		then(deserialize)
 }
 
 module.exports = {
-	findProjectById: (projectId) => {
-		return db('projects').
-			where('project_id', projectId).
-			then(deserialize)
-	},
+	findProjectById: findProjectById,
 	findProjectsByUserId: (userId) => {
 		return db('projects').
 			where('owner', userId).
@@ -51,6 +42,9 @@ module.exports = {
 		then((result) => deserializeAll(result.rows));
 	},
 	saveProject: (project) => {
+		if(!project.isUpdatable())
+			return findProjectById(project.projectId)
+
 		return db('projects')
 			.where('project_id', project.projectId)
 			.update(project.toUpdateSafeDBModel(), '*').

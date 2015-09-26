@@ -12,7 +12,13 @@ app
 		if(err) console.log("get User err: ", err); 
 	});
 
+<<<<<<< HEAD
+  	$scope.createProject = function(project){
+  		console.log("Create project"); 
+  	}
+=======
     console.log("DashboardCtrl");
+>>>>>>> ab875f2287c67a9b8cd2027a66f2554212a3763d
 
 
 }]);
