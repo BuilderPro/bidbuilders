@@ -21,14 +21,23 @@ app
       .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'app/dashboard/dashboardView.html', 
-        controller: 'DashboardCtrl'
+        controller: 'DashboardCtrl',
+        resolve: {
+          console: function(){
+            console.log("Dashboard resolve"); //works 
+          }
+        }
       })
       .state('projects', {
         url: '/projects', 
         templateUrl: 'app/projects/projectsView.html', 
         controller: 'ProjectsCtrl'
       })
-
+      .state('bids', {
+        url: '/bids',
+        templateUrl: 'app/bids/BidView.html', 
+        controller: 'BidCtrl'
+      })
   });
 
 })();
