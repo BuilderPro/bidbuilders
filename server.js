@@ -206,7 +206,15 @@ app.post('/invite', (req, res, next) => {
 
 	inviteProvider.
 		createInvite(Invite(req.body)).
+		then(serialize).
 		then((invite) => { res.json(invite) });
+})
+
+app.get('/search/projects', (req, res, next) => {
+	projectProvider.
+		searchProjects(req.query.userId || req.user.userId, req.query.query).
+		then(serializeAll).
+		then((projects) => { res.json(projects) })
 })
 
 

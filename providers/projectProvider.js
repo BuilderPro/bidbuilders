@@ -19,6 +19,10 @@ function findProjectById(projectId) {
 		then(deserialize)
 }
 
+function prepQuery(query) {
+	return query ? "'%" + query.trim().toLowerCase() + "%'" : query;
+}
+
 module.exports = {
 	findProjectById: findProjectById,
 	findProjectsByUserId: (userId) => {
@@ -55,5 +59,13 @@ module.exports = {
 			.insert(project.toDBModel())
 			.into('projects')
 			.then(deserialize);	
+	},
+	searchProjects: (userId, query) => {
+		return db('projects').
+			where('owner', userId).
+			andWhere(function(){
+				this.whereRaw('"name" ILIKE ' + prepQuery(query)).orWhereRaw('"description" ILIKE ' + prepQuery(query))
+			})
+			.then(deserializeAll);
 	}
 }
