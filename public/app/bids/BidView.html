@@ -1,3 +1,12 @@
 <h1 class="text-center">Bids</h1>
 
-<a href="#" class="btn btn-default btn-lg">Create A Bid</a>
+<div class="row">
+	<div class="col-md-4" ng-repeat="bid in bids">
+		<div class="panel panel-default">
+			<div class="panel-heading">Bid for {{bid.owner}}</div>
+			<div class="panel-body">
+				<h3 class="text-center">Amount: {{bid.amount}}</h3>
+			</div>
+		</div>
+	</div>
+</div>
